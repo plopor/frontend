@@ -1,0 +1,30 @@
+<div class="container">
+    <h2>Upload Video, Select Prompt, and Pick Model (blip, gpt2, clip)</h2>
+
+    <form (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+
+        <div class="form-group">
+            <label for="video">Choose a video file:</label>
+            <input type="file" id="video" (change)="onFileSelected($event)" class="form-control" accept="video/mp4,video/x-m4v,video/*" />
+        </div>
+
+        <div class="form-group">
+            <label for="prompt">Prompt:</label>
+            <input type="text" id="prompt" [(ngModel)]="prompt" name="prompt" class="form-control"
+                placeholder="Enter a prompt" />
+        </div>
+
+        <div class="form-group">
+            <label for="method">Model:</label>
+            <input type="text" id="method" [(ngModel)]="method" name="method" class="form-control"
+                placeholder="Enter a model" />
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="!video || !prompt || !method">Upload</button>
+    </form>
+
+    <div *ngIf="imageUrl">
+        <h3>Matching frame:</h3>
+        <img [src]="imageUrl" alt="Selected Frame" class="img-fluid" />
+    </div>
+</div>
